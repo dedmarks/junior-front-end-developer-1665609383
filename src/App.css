@@ -82,7 +82,7 @@
   flex-grow: 0;
 }
 
-.taskName {
+.taskNameCompleted {
   font-style: normal;
   font-weight: 500;
   margin-left: 10px;
@@ -90,10 +90,35 @@
   color: #242325;
 }
 
+.taskNameActive {
+  font-style: normal;
+  font-weight: 600;
+  margin-left: 10px;
+  font-size: 12px;
+  color: #242325;
+}
+
+.taskNameBlocked {
+  font-style: normal;
+  font-weight: 500;
+  margin-left: 10px;
+  font-size: 12px;
+  color: #aeb5c1;
+}
+
 .row {
   display: flex;
   margin-bottom: 15.44px;
+  padding-left: 10px;
   align-items: center;
+}
+
+.row:hover {
+  background-color: rgb(176, 210, 255, 0.5);
+  border-radius: 4px;
+  transition: 0.15s;
+  cursor: pointer;
+  width: 250px;
 }
 
 .headerContainer {

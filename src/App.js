@@ -8,7 +8,6 @@ function App() {
     <div className="App">
       <Header/>
       <div className="wrapper">
-        <Window/>
         <BuisnessContext/>
       </div>
     </div>
