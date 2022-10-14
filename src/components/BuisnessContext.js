@@ -9,11 +9,15 @@ import { ReactComponent as Check } from '../svg/check.svg';
 import { ReactComponent as Arrow } from '../svg/arrowblue.svg';
 import { ReactComponent as ProfilePicture } from '../svg/profile_pic.svg';
 
-const BuisnessContext = ({index}) => {
+const BuisnessContext = () => {
 
   const [state, setstate] = useState(4);
+  const [card, setCard] = useState(2); 
+  const [active, setActive] = useState(true)
+  const [active1, setActive1] = useState(true)
+  const [active2, setActive2] = useState(false)
 
-  console.log(state)
+  console.log(active,active1,active2)
 
 
    let formatter = new Intl.DateTimeFormat("en-GB", {
@@ -26,18 +30,7 @@ const BuisnessContext = ({index}) => {
     hour: "numeric",
     minute: "numeric",
   });
-
-
-  var currentdate = new Date(); 
-  var datetime = currentdate.getFullYear() + "-"
-              + (currentdate.getMonth()+1)  + "-" 
-              + currentdate.getDate() + "T"  
-              + (currentdate.getHours() + 2) + ":"  
-              + currentdate.getMinutes() + ":" 
-              + currentdate.getSeconds() + "."
-              + currentdate.getMilliseconds() + "Z";
               
-
   return (
     <div className="wrapper">
        <div className="container">
@@ -64,22 +57,24 @@ const BuisnessContext = ({index}) => {
         <div className="inboxContainer">
             <div className="left">
               {tasks[state-1].buisness_context.map(item => (
-              item.status === "Active" ? <ActiveCard inbox={item}/> : item.status === "New" ? <NewCard inbox={item}/> : <ReadCard inbox={item}/>
+              item.status === "Active" ? <div onClick={() => setCard(item.id) & setActive(false) & setActive1(true) & setActive2(false)}><ActiveCard inbox={item} active={active} active1={active1} active2={active2}/></div> : 
+              item.status === "New" ? <div onClick={() => setActive(false) & setActive1(false) & setActive2(false) & setCard(item.id)}><NewCard active={active} inbox={item} active1={active1} active2={active2}/></div> : 
+              <div onClick={() => setCard(item.id) & setActive(false) & setActive1(false) & setActive2(true)}><ReadCard inbox={item} active1={active1} active2={active2} active={active}/></div>
               ))}
             </div>
             <div className="right">
-              <h1 className="msgTitle">{tasks[state-1].buisness_context[1].title}</h1>
+              <h1 className="msgTitle">{tasks[state-1].buisness_context[card-1].title}</h1>
               <div className="authorInfo">
                 <div className="authorPic">
                   <ProfilePicture/>
                 </div>
-                  <h3 className="Author">{tasks[state-1].buisness_context[1].author}</h3>
+                  <h3 className="Author">{tasks[state-1].buisness_context[card-1].author}</h3>
                   <div className="msgDot"/>
-                  <h3 className="boxDate">{formatter.format(Date.parse(tasks[state-1].buisness_context[1].created_at))}</h3>
+                  <h3 className="boxDate">{formatter.format(Date.parse(tasks[state-1].buisness_context[card-1].created_at))}</h3>
                   <div className="msgDot"/>
-                  <h3 className="boxAuthor">{Timeformatter.format(Date.parse(tasks[state-1].buisness_context[1].created_at))}</h3>
+                  <h3 className="boxAuthor">{Timeformatter.format(Date.parse(tasks[state-1].buisness_context[card-1].created_at))}</h3>
               </div>
-              <p className="mainMessage " dangerouslySetInnerHTML={{ __html: tasks[state-1].buisness_context[1].message}} />
+              <p className="mainMessage " dangerouslySetInnerHTML={{ __html: tasks[state-1].buisness_context[card-1].message}} />
             </div>
         </div>
     </div>

@@ -1,7 +1,7 @@
 import './App.css';
 import BuisnessContext from './components/BuisnessContext';
+import Footer from './components/Footer';
 import Header from './components/Header';
-import Window from './components/Window';
 
 function App() {
   return (
@@ -10,6 +10,7 @@ function App() {
       <div className="wrapper">
         <BuisnessContext/>
       </div>
+      <Footer/>
     </div>
   );
 }
