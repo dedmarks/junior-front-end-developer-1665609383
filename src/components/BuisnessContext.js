@@ -4,6 +4,7 @@ import ActiveCard from './Cards/ActiveCard';
 import NewCard from './Cards/NewCard';
 import ReadCard from './Cards/ReadCard';
 import {tasks} from "../data/tasks.js"
+import moment from "moment"
 import { ReactComponent as Lock } from '../svg/lock.svg';
 import { ReactComponent as Check } from '../svg/check.svg';
 import { ReactComponent as Arrow } from '../svg/arrowblue.svg';
@@ -17,11 +18,20 @@ const BuisnessContext = () => {
   const [active1, setActive1] = useState(true)
   const [active2, setActive2] = useState(false)
 
-  console.log(active,active1,active2)
+  var currentdate = new Date(); 
 
-
+  var datetime = currentdate.getFullYear() + "-"
+              + (currentdate.getMonth()+1)  + "-" 
+              + currentdate.getDate() + ""  
+            
+            
    let formatter = new Intl.DateTimeFormat("en-GB", {
     year: "numeric",
+    month: "numeric",
+    day: "2-digit"
+  });
+
+  let formatter2 = new Intl.DateTimeFormat("en-GB", {
     month: "long",
     day: "2-digit"
   });
@@ -30,7 +40,17 @@ const BuisnessContext = () => {
     hour: "numeric",
     minute: "numeric",
   });
-              
+
+  let a = formatter.format(Date.parse(tasks[state-1].buisness_context[card-1].created_at))
+
+  let dateArr = a.split('/')
+  let currDateArr = datetime.split('-')
+
+  var c = moment([currDateArr[0], currDateArr[1], currDateArr[2]]);
+  var b = moment([dateArr[2], dateArr[1], dateArr[0]]);
+
+  let difference = c.diff(b, 'days')
+
   return (
     <div className="wrapper">
        <div className="container">
@@ -73,7 +93,7 @@ const BuisnessContext = () => {
                 </div>
                   <h3 className="Author">{tasks[state-1].buisness_context[card-1].author}</h3>
                   <div className="msgDot"/>
-                  <h3 className="boxDate">{formatter.format(Date.parse(tasks[state-1].buisness_context[card-1].created_at))}</h3>
+                  <h3 className="boxDate">{difference === 0 ? "Today, " + formatter2.format(Date.parse(tasks[state-1].buisness_context[card-1].created_at)): difference + ' days ago, ' + formatter2.format(Date.parse(tasks[state-1].buisness_context[card-1].created_at))}</h3>
                   <div className="msgDot"/>
                   <h3 className="boxAuthor">{Timeformatter.format(Date.parse(tasks[state-1].buisness_context[card-1].created_at))}</h3>
               </div>
