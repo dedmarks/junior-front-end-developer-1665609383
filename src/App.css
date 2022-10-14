@@ -5,6 +5,14 @@
   background: #f4f5f7;
 }
 
+.line {
+  width: 160px;
+  margin-left: -158px;
+  margin-top: 63px;
+  height: 3px;
+  background: #0165ff;
+}
+
 .container {
   display: flex;
   flex-direction: column;
@@ -141,6 +149,11 @@
   margin-left: auto;
   border-radius: 600px;
   border: 1px solid #6b778c;
+}
+
+.ok {
+  display: flex;
+  align-items: center;
 }
 
 .buisnessContainer {

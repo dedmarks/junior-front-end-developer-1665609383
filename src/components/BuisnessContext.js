@@ -51,8 +51,11 @@ const BuisnessContext = () => {
     </div>
     <div className="buisnessWrapper">  
         <div className="buisnessContainer">
+            <div className="ok">
             <Tab className="tab"/>
             <h1 className="tabText">Buisness Context</h1>
+            </div>
+            <div className="line"/>
         </div>
         <div className="inboxContainer">
             <div className="left">
